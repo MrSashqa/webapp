@@ -3,41 +3,22 @@ package project.controller.command;
 import project.controller.command.impl.*;
 
 public enum CommandEnum {
-    LOGIN {
-        {
-            this.command = new LoginCommand();
-        }
-    }, REGISTER {
-        {
-            this.command = new RegisterCommand();
-        }
-    }, MENU_CONTENT {
-        {
-            this.command = new MenuContentCommand();
-        }
-    }, ADMIN_PAGE {
-        {
-            this.command = new AdminPageCommand();
-        }
-    }, CREATE_DISH {
-        {
-            this.command = new CreateDishCommand();
-        }
-    }, DELETE_DISH {
-        {
-            this.command = new DeleteDishCommand();
-        }
-    }, CREATE_ORDER {
-        {
-            this.command = new CreateOrderCommand();
-        }
-    }, WAITING_PAGE {
-        {
-            this.command = new WaitingPageCommand();
-        }
-    };
+    LOGIN_PAGE(new LoginPageCommand()),
+    LOGIN(new LoginCommand()),
+    REGISTER(new RegisterCommand()),
+    MENU_CONTENT(new MenuContentCommand()),
+    ADMIN_PAGE(new AdminPageCommand()),
+    CREATE_DISH(new CreateDishCommand()),
+    DELETE_DISH(new DeleteDishCommand()),
+    CREATE_ORDER(new CreateOrderCommand()),
+    WAITING_PAGE(new WaitingPageCommand());
 
-    protected ActionCommand command;
+
+    private ActionCommand command;
+
+    CommandEnum(ActionCommand command) {
+        this.command = command;
+    }
 
     public ActionCommand getCommand() {
         return command;

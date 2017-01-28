@@ -27,7 +27,7 @@ public class AppController extends HttpServlet {
             throws ServletException, IOException {
         process(request, response);
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
