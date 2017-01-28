@@ -14,7 +14,7 @@ import java.util.Map;
 public class MenuDishDAOImpl implements MenuDishDAO {
     private static final Logger LOGGER = Logger.getLogger(MenuDishDAOImpl.class);
     private static final String DISH_ID = "dishId";
-    private static final String DISH_NAME = "dishId";
+    private static final String DISH_NAME = "dishName";
     private static final String PRICE = "price";
     private static final String DISH_TYPE = "dishType";
     private static final String QUANTITY = "quantity";

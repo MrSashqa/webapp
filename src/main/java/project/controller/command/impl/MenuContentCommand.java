@@ -8,7 +8,6 @@ import project.model.service.MenuDishService;
 import project.util.Pages;
 import project.util.Roles;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
@@ -19,7 +18,6 @@ public class MenuContentCommand extends ActionCommand {
     public String execute(RequestWrapper request) {
         MenuDishService menuDishService = serviceFactory.getMenuDishService();
         EnumMap<DishType, List<Dish>> menu = menuDishService.getMenu().getContent();
-
         String role = (String) request.getAttributeFromSession(Roles.ROLE);
         if (role.equals(Roles.ADMIN)) {
             DishType[] dishTypes = menuDishService.getAllDishTypes();

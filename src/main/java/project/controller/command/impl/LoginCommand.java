@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import project.controller.command.ActionCommand;
 import project.controller.command.CommandEnum;
-import project.model.service.security.PasswordHasher;
 import project.util.JspMessage;
 import project.util.Pages;
 import project.controller.validator.impl.UserValidator;
@@ -47,17 +46,10 @@ public class LoginCommand extends ActionCommand {
             request.setAttribute("errors", errors);
             return Pages.LOGIN;
         }
-        System.out.println(userOptional.get().isAdmin());
-        if (userOptional.get().isAdmin()) {
-            request.setAttributeToSession(Roles.ROLE, Roles.ADMIN);
-            request.setAttributeToSession("user", user);
-            return CommandEnum.ADMIN_PAGE.getCommand().execute(request);
-        } else {
-            user.setId(userOptional.get().getId());
-            request.setAttributeToSession(Roles.ROLE, Roles.CLIENT);
-            request.setAttributeToSession("user", user);
-            return CommandEnum.MENU_CONTENT.getCommand().execute(request);
-        }
+
+        request.setAttributeToSession(Roles.ROLE, userOptional.get().isAdmin() ? Roles.ADMIN : Roles.CLIENT);
+        request.setAttributeToSession("user", user);
+        return CommandEnum.MAIN_PAGE.getCommand().execute(request);
     }
 }
 

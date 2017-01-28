@@ -10,6 +10,29 @@
         <res-auth>Container</res-auth>
     </resource-ref>
 
+    <filter>
+        <filter-name>encoding</filter-name>
+        <filter-class>project.controller.filter.EncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>loginPage</filter-name>
+        <filter-class>project.controller.filter.LoginPageFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>loginPage</filter-name>
+        <url-pattern>/index.jsp</url-pattern>
+        <url-pattern>/</url-pattern>
+    </filter-mapping>
+
 
 </web-app>
 

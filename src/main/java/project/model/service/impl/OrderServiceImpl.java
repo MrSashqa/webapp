@@ -56,10 +56,6 @@ public class OrderServiceImpl implements OrderService {
         try (ConnectionWrapper connection = connectionFactory.getConnection()) {
             OrderDAO orderDao = daoFactory.getOrderDAO(connection);
             orders = orderDao.getAllByStatus(status);
-            for (Order order : orders) {
-                order.setOrderContent(daoFactory.getMenuDishDAO(connection).getAllByOrderId(order.getId()));
-                order.setClient(daoFactory.getClientDAO(connection).getById(order.getClientId()).get());
-            }
         }
         return orders;
     }

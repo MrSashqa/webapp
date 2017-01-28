@@ -23,7 +23,6 @@ public class ClientDAOImpl implements ClientDAO {
 
     private Connection connection;
 
-
     public ClientDAOImpl(Connection connection) {
         this.connection = connection;
     }
@@ -81,8 +80,8 @@ public class ClientDAOImpl implements ClientDAO {
         client.setId(id == null ? resultSet.getInt(ID) : id);
         client.setFirstName(resultSet.getString(FIRST_NAME));
         client.setLastName(resultSet.getString(LAST_NAME));
-        client.setPhoneNumber((resultSet.getString(PHONE_NUMBER)));
-        client.setEmail((resultSet.getString(E_MAIL)));
+        client.setPhoneNumber(resultSet.getString(PHONE_NUMBER));
+        client.setEmail(resultSet.getString(E_MAIL));
         return client;
     }
 

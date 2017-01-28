@@ -3,8 +3,8 @@ package project.controller.command;
 import project.controller.command.impl.*;
 
 public enum CommandEnum {
-    LOGIN_PAGE(new LoginPageCommand()),
     LOGIN(new LoginCommand()),
+    MAIN_PAGE(new MainPageCommand()),
     REGISTER(new RegisterCommand()),
     MENU_CONTENT(new MenuContentCommand()),
     ADMIN_PAGE(new AdminPageCommand()),
