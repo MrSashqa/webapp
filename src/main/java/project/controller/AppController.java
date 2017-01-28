@@ -22,12 +22,12 @@ public class AppController extends HttpServlet {
         super();
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println(request.getParameter("command"));
         process(request, response);
     }
-
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         process(request, response);
@@ -37,9 +37,7 @@ public class AppController extends HttpServlet {
             throws ServletException, IOException {
         RequestWrapper requestWrapper = new RequestWrapper(request, response);
         ActionCommand command = CommandFactory.defineCommand(requestWrapper);
-        System.out.println(command);
         String path = command.execute(requestWrapper);
-        System.out.println("Command: " + path);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(path);
         requestDispatcher.forward(request, response);
     }
