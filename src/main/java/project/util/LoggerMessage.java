@@ -2,6 +2,9 @@ package project.util;
 
 
 public class LoggerMessage {
+    private LoggerMessage() {
+    }
+
     public static final String ERROR_PREAMBLE = "Error occurred trying to: ";
     public static final String SUCCESS_PREAMBLE = "Successful: ";
     public static final String SUCCESS_CONNECTION_FACTORY_INIT = SUCCESS_PREAMBLE + "init connection factory";
