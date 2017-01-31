@@ -12,6 +12,7 @@ public abstract class ActionCommand {
         this.serviceFactory = ServiceFactoryImpl.getInstance();
     }
 
-    public abstract String execute(RequestWrapper request);
+    public abstract Action execute(RequestWrapper request);
+
 
 }

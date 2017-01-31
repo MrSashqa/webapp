@@ -47,20 +47,20 @@ public class OrderDAOImpl implements OrderDAO {
     private void insertOrderContent(Order order) throws SQLException {
         Map<Dish, Integer> orderContent = order.getOrderContent();
         try (PreparedStatement preparedStatement =
-                     connection.prepareStatement("INSERT INTO order_lines(id, dishId, quantity) VALUES (?,?,?)")) {
+                     connection.prepareStatement("INSERT INTO order_lines(orderId, dishId, quantity) VALUES (?,?,?)")) {
             for (Map.Entry<Dish, Integer> entry : orderContent.entrySet()) {
                 preparedStatement.setInt(1, order.getId());
                 preparedStatement.setInt(2, entry.getKey().getId());
                 preparedStatement.setInt(3, entry.getValue());
                 preparedStatement.addBatch();
             }
-            preparedStatement.executeBatch();
+            preparedStatement.executeUpdate();
         }
     }
 
     @Override
     public void insertOrder(Order order) {
-        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO orders(clientId, dateCreated) VALUES(?,?)",
+        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO orders(clientId) VALUES(?)",
                 PreparedStatement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setInt(1, order.getClientId());
             if (preparedStatement.executeUpdate() > 0) {

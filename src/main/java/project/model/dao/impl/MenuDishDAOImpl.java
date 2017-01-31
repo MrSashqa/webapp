@@ -6,6 +6,7 @@ import project.model.dao.exception.DAOException;
 import project.model.entity.Dish;
 import project.model.entity.Menu;
 import project.util.LoggerMessage;
+
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -83,10 +84,11 @@ public class MenuDishDAOImpl implements MenuDishDAO {
 
     @Override
     public Map<Dish, Integer> getAllByOrderId(int id) {
-        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT quantity, menu.dishId, dishType, price, dishName " +
-                "FROM menu  " +
-                "INNER JOIN order_lines ON order_lines.dishId=menu.dishId " +
-                "INNER JOIN orders ON orders.id = order_lines.dishId WHERE clientId=?")) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT quantity, menu.dishId, dishType, price, dishName " +
+                        "FROM menu  " +
+                        "INNER JOIN order_lines ON order_lines.dishId=menu.dishId " +
+                        "WHERE orderId=?")) {
             preparedStatement.setInt(1, id);
             return getDishToQuantity(preparedStatement.executeQuery());
         } catch (SQLException e) {
@@ -112,7 +114,6 @@ public class MenuDishDAOImpl implements MenuDishDAO {
         }
         return menu;
     }
-
 
     private Map<Dish, Integer> getDishToQuantity(ResultSet resultSet) throws SQLException {
         Map<Dish, Integer> dishIntegerMap = new HashMap<>();

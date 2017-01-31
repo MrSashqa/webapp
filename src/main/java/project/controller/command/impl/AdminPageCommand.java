@@ -1,6 +1,8 @@
 package project.controller.command.impl;
 
 import org.apache.log4j.Logger;
+import project.controller.command.Action;
+import project.controller.command.Action.ActionType;
 import project.controller.command.ActionCommand;
 import project.controller.wrapper.RequestWrapper;
 import project.model.entity.Order;
@@ -13,11 +15,11 @@ public class AdminPageCommand extends ActionCommand {
     private static final Logger LOGGER = Logger.getLogger(AdminPageCommand.class);
 
     @Override
-    public String execute(RequestWrapper request) {
-        LOGGER.debug("IN COMMAND");
+    public Action execute(RequestWrapper request) {
+        LOGGER.debug("ADMIN PAGE COMMAND");
         OrderService orderService = serviceFactory.gerOrderService();
         List<Order> orders = orderService.getAllByStatus(Order.OrderStatus.NEW);
         request.setAttribute("orders", orders);
-        return Pages.ADMIN;
+        return new Action(Pages.ADMIN, ActionType.FORWARD);
     }
 }

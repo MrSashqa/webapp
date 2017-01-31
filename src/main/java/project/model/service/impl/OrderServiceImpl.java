@@ -5,6 +5,7 @@ import project.model.dao.OrderDAO;
 import project.model.dao.connection.ConnectionFactory;
 import project.model.dao.connection.ConnectionWrapper;
 import project.model.entity.Order;
+import project.model.entity.Order.OrderStatus;
 import project.model.service.OrderService;
 
 import java.util.List;
@@ -51,7 +52,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getAllByStatus(Order.OrderStatus status) {
+    public List<Order> getAllByStatus(OrderStatus status) {
         List<Order> orders;
         try (ConnectionWrapper connection = connectionFactory.getConnection()) {
             OrderDAO orderDao = daoFactory.getOrderDAO(connection);
